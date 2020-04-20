@@ -10,7 +10,12 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'docker push 127.0.0.1:5000/make-it-cry-1.0-SNAPSHOT:latest'
+                sh '''
+                docker build -f Dockerfile -t make-it-cry .
+                docker tag make-it-cry:latest 127.0.0.1:5000/make-it-cry:latest
+                docker push 127.0.0.1:5000/make-it-cry:latest
+                docker rmi make-it-cry:latest
+                '''
             }
         }
 //         stage('Deploy DEV') {
