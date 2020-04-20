@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
+                sh 'chmod u+x mvnw'
                 sh './mvnw package'
             }
         }
