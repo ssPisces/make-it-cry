@@ -8,11 +8,11 @@ pipeline {
                 sh './mvnw package'
             }
         }
-//         stage('Publish') {
-//             steps {
-//                 sh 'mvn deploy'
-//             }
-//         }
+        stage('Build Image') {
+            steps {
+                sh 'docker push 127.0.0.1:5000/make-it-cry-1.0-SNAPSHOT:latest'
+            }
+        }
 //         stage('Deploy DEV') {
 //             environment {
 //                 //change here
