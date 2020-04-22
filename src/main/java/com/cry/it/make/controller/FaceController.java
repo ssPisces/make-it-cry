@@ -12,6 +12,6 @@ public class FaceController {
     @GetMapping("/face")
     public String face(Map<String, Object> model) {
         model.put("face", new Face().face());
-        return "cry";
+        return "face";
     }
 }
