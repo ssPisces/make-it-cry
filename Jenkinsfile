@@ -18,10 +18,9 @@ pipeline {
                 sh '''
                 ./mvnw package
                 docker build -f Dockerfile -t ${IMAGE_NAME}:${VERSION_ID} .
-                new_image_id=`docker images|grep ${IMAGE_NAME}|grep ${VERSION_ID}|awk '{print $3}'`
-                docker tag ${new_image_id} ${IMAGE_ADDR}:${VERSION_ID}
+                docker tag ${IMAGE_NAME}:${VERSION_ID} ${IMAGE_ADDR}:${VERSION_ID}
                 docker push ${IMAGE_ADDR}:${VERSION_ID}
-                docker rmi ${new_image_id}
+                docker rmi ${IMAGE_NAME}:${VERSION_ID}
                 '''
             }
         }

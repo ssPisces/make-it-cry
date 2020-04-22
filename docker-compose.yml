@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  make-it-cry:
+    image: 127.0.0.1:5000/make-it-cry:latest
+#    restart: always
+    ports:
+      - "8090:8080"
