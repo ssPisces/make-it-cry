@@ -28,12 +28,12 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 sh '''
-                container_id=`docker ps|grep ${IMAGE_ADDR}:${VERSION_ID}|awk '{print $1}'`
+                container_id=`docker ps|grep ${IMAGE_ADDR}|awk '{print $1}'`
                 if [ -n "${container_id}" ]; then
                     docker rm -f "${container_id}"
                 fi
 
-                old_image=`docker images|grep ${IMAGE_ADDR}|grep ${VERSION_ID}`
+                old_image=`docker images|grep ${IMAGE_ADDR}`
                 if [[ -n $old_image ]]; then
                     old_image_id=`echo ${old_image}|awk '{print $3}'`
                     docker rmi -f ${old_image_id}
