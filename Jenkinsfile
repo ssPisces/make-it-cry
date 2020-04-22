@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo 'Deploying....'
                 sh '''
-                docker run -d -p 8090:8090 127.0.0.1:5000/make-it-cry:latest
+                docker run -d -p 8090:8080 127.0.0.1:5000/make-it-cry:latest
                 '''
             }
         }
