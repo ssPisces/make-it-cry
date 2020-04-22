@@ -2,7 +2,8 @@ pipeline {
     agent any
     options { disableConcurrentBuilds() }
     environment {
-        IMAGE_NAME="make-it-cry"
+        IMAGE_NAME="make-it-cry-wang"
+        PORT="8091"
         IMAGE_ADDR="127.0.0.1:5000/${IMAGE_NAME}"
         VERSION_ID="${BUILD_ID}"
     }
@@ -33,7 +34,7 @@ pipeline {
                     docker rm -f "${container_id}"
                 fi
 
-                docker run -d -p 8090:8080 ${IMAGE_ADDR}:${VERSION_ID}
+                docker run -d -p ${PORT}:8080 ${IMAGE_ADDR}:${VERSION_ID}
                 '''
             }
         }
