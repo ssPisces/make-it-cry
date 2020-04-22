@@ -33,12 +33,6 @@ pipeline {
                     docker rm -f "${container_id}"
                 fi
 
-                old_image=`docker images|grep ${IMAGE_ADDR}`
-                if [[ -n $old_image ]]; then
-                    old_image_id=`echo ${old_image}|awk '{print $3}'`
-                    docker rmi -f ${old_image_id}
-                fi
-
                 docker run -d -p 8090:8080 ${IMAGE_ADDR}:${VERSION_ID}
                 '''
             }
