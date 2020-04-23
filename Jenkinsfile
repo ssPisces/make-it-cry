@@ -2,8 +2,8 @@ pipeline {
     agent any
     options { disableConcurrentBuilds() }
     environment {
-        IMAGE_NAME="make-it-cry"
-        PORT="8091"
+        IMAGE_NAME="make-it-cry_gs"
+        PORT="9099"
         IMAGE_ADDR="127.0.0.1:5000/${IMAGE_NAME}"
         VERSION_ID="${BUILD_ID}"
     }
