@@ -2,14 +2,14 @@ pipeline {
     agent any
     options { disableConcurrentBuilds() }
     environment {
-        IMAGE_NAME="make-it-cry-wang"
+        IMAGE_NAME="make-it-cry"
         PORT="8091"
         IMAGE_ADDR="127.0.0.1:5000/${IMAGE_NAME}"
         VERSION_ID="${BUILD_ID}"
     }
 
     stages {
-        stage('Run Test') {
+        stage('Test') {
             steps {
                 sh 'chmod u+x mvnw'
                 sh './mvnw clean test'
@@ -26,7 +26,7 @@ pipeline {
                 '''
             }
         }
-        stage('Develop') {
+        stage('Deploy') {
             steps {
                 echo 'Deploying....'
                 sh '''
@@ -37,21 +37,6 @@ pipeline {
 
                 docker run -d -p ${PORT}:8080 ${IMAGE_ADDR}:${VERSION_ID}
                 '''
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Test'
-            }
-        }
-        stage('UAT') {
-            steps {
-                echo 'UAT'
-            }
-        }
-        stage('PROD') {
-            steps {
-                echo 'PROD'
             }
         }
 
